@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold:    #E6A122;
+  --crimson: #840E20;
+  --maroon:  #290101;
+  --wine:    #591D1F;
+  --cream:   #FDF6E3;
+  --text-light: #F5F0E8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0101;
+  color: var(--text-light);
+  font-family: 'Times New Roman', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: 'League Spartan', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0101; }
+::-webkit-scrollbar-thumb { background: var(--wine); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--crimson); }
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--gold);
+  color: var(--maroon);
+}
+
+/* ─── Page transition ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* ─── Gold shimmer on headings ─── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #E6A122 0%, #f5c84a 40%, #E6A122 60%, #c8891c 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ─── Decorative divider ─── */
+.keris-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 2rem 0;
+}
+.keris-divider::before,
+.keris-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ─── Card hover glow ─── */
+.card-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(230, 161, 34, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ─── Noise texture overlay ─── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.04;
+}
+
+/* ─── Section fade-up animation ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.animate-fade-up-delay-1 { animation-delay: 0.1s; }
+.animate-fade-up-delay-2 { animation-delay: 0.2s; }
+.animate-fade-up-delay-3 { animation-delay: 0.3s; }
+
+/* ─── Glassmorphism card ─── */
+.glass-card {
+  background: rgba(89, 29, 31, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 161, 34, 0.15);
+}
+
+/* ─── Button base ─── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--gold);
+  color: var(--maroon);
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #f5c84a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(230, 161, 34, 0.4);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 27px;
+  background: transparent;
+  color: var(--gold);
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--maroon);
+}
+
+/* ─── Input styles ─── */
+.keris-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(230,161,34,0.25);
+  color: var(--text-light);
+  padding: 12px 16px;
+  font-family: 'Times New Roman', serif;
+  font-size: 15px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.keris-input:focus {
+  border-color: var(--gold);
+  background: rgba(230,161,34,0.05);
+}
+.keris-input::placeholder {
+  color: rgba(245,240,232,0.35);
+}
+
+/* ─── Table styles ─── */
+.keris-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.keris-table th {
+  background: var(--wine);
+  color: var(--gold);
+  font-family: 'League Spartan', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  text-align: left;
+}
+.keris-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 14px;
+  color: rgba(245,240,232,0.8);
+}
+.keris-table tr:hover td {
+  background: rgba(230,161,34,0.04);
+}
+
+/* ─── Status badge ─── */
+.badge-open   { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3);  }
+.badge-closed { background: rgba(239,68,68,0.15);  color: #f87171; border: 1px solid rgba(239,68,68,0.3);  }
+.badge-soon   { background: rgba(234,179,8,0.15);  color: #fde047; border: 1px solid rgba(234,179,8,0.3);  }
+
+.status-badge {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
